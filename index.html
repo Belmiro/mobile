@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exemplo de Geolocation</title>
+
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Espere a que PhoneGap se inicie
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap esta listo
+    //
+    function onDeviceReady() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }
+
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) {
+        var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitud: '           + position.coords.latitude              + '<br />' +
+                            'Longitud: '          + position.coords.longitude             + '<br />' +
+                            'Altitud: '           + position.coords.altitude              + '<br />' +
+                            'Precisión: '         + position.coords.accuracy              + '<br />' +
+                            'Precisión Altitud: ' + position.coords.altitudeAccuracy      + '<br />' +
+                            'Dirección: '         + position.coords.heading               + '<br />' +
+                            'Velocidad: '         + position.coords.speed                 + '<br />' +
+                            'Timestamp: '         + new Date(position.timestamp)          + '<br />';
+    }
+
+    // La función 'callback' onError recibe un objeto `PositionError`.
+    //
+    function onError(error) {
+        alert('código: '    + error.code    + '\n' +
+              'mensagem: ' + error.message + '\n');
+    }
+
+    </script>
+  </head>
+  <body>
+    <h1>Exemplo GPS</h1>
+    <p id="geolocation">Buscando geolocalização...</p>
+  </body>
+</html>
+
